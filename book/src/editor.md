@@ -60,39 +60,12 @@
 | `workspace-lsp-roots` | Directories relative to the workspace root that are treated as LSP roots. Should only be set in `.helix/config.toml` | `[]` |
 | `default-line-ending` | The line ending to use for new documents. Can be `native`, `lf`, `crlf`, `ff`, `cr` or `nel`. `native` uses the platform's native line ending (`crlf` on Windows, otherwise `lf`). | `"native"` |
 | `insert-final-newline` | Whether to automatically insert a trailing line-ending on write if missing | `true` |
-| `atomic-save` | Whether to use atomic operations to write documents to disk. This prevents data loss if the editor is interrupted while writing the file, but may confuse some file watching/hot reloading programs. | `true` |
-| `trim-final-newlines` | Whether to automatically remove line-endings after the final one on write | `false` |
-| `trim-trailing-whitespace` | Whether to automatically remove whitespace preceding line endings on write | `false` |
-| `popup-border` | Draw border around `popup`, `menu`, `all`, or `none` | `"none"` |
-| `indent-heuristic` | How the indentation for a newly inserted line is computed: `simple` just copies the indentation level from the previous line, `tree-sitter` computes the indentation based on the syntax tree and `hybrid` combines both approaches. If the chosen heuristic is not available, a different one will be used as a fallback (the fallback order being `hybrid` -> `tree-sitter` -> `simple`). | `"hybrid"` |
-| `jump-label-alphabet` | The characters that are used to generate two character jump labels. Characters at the start of the alphabet are used first. | `"abcdefghijklmnopqrstuvwxyz"` |
-| `end-of-line-diagnostics` | Minimum severity of diagnostics to render at the end of the line. Set to `disable` to disable entirely. Refer to the setting about `inline-diagnostics` for more details | `"hint"` |
-| `clipboard-provider` | Which API to use for clipboard interaction. One of `pasteboard` (MacOS), `wayland`, `x-clip`, `x-sel`, `win32-yank`, `termux`, `tmux`, `windows`, `termcode`, `none`, or a custom command set. | Platform and environment specific. |
-| `editor-config` | Whether to read settings from [EditorConfig](https://editorconfig.org) files | `true` |
-| `rainbow-brackets` | Whether to render rainbow colors for matching brackets. Requires tree-sitter `rainbows.scm` queries for the language. | `false` |
-| `kitty-keyboard-protocol` | Whether to enable Kitty Keyboard Protocol. Can be `enabled`, `disabled` or `auto` | `"auto"` |
-
-[^3]: In most cases, you also need to enable the `auto-format` setting under `languages.toml`. You can find the reasoning [here](https://github.com/helix-editor/helix/discussions/9043#discussioncomment-7811497).
-
-### `[editor.breadcrumb]` Section
-
-Allows configuration of the breadcrumb navigation bar.
-
-|  Setting |                 Description                     | Default |
-|----------|-------------------------------------------------|---------|
-| `enable` | Whether to enable the breadcrumb navigation bar | `false` |
-|  `path`  | Selecting how much path information is shown    | `"full"`|
-
-```toml
-[editor.breadcrumb]
-enable = true
-# full: helix-term > src > commands > typed.rs > TypeableCommand > name
-# file: typed.rs > TypeableCommand > name
-# none: TypeableCommand > name
-path = "full|file|none"
-```
-
-The bar is displayed at the top of the view.
+| `popup-border` | Draw border around `popup`, `menu`, `all`, or `none` | `none` |
+| `indent-heuristic` | How the indentation for a newly inserted line is computed: `simple` just copies the indentation level from the previous line, `tree-sitter` computes the indentation based on the syntax tree and `hybrid` combines both approaches. If the chosen heuristic is not available, a different one will be used as a fallback (the fallback order being `hybrid` -> `tree-sitter` -> `simple`). | `hybrid`
+| `jump-label-alphabet` | The characters that are used to generate two character jump labels. Characters at the start of the alphabet are used first. | `"abcdefghijklmnopqrstuvwxyz"`
+| `enable-diagnostics` | Whether to show diagnostics, such as inline diagnostics and overlay diagnostics | `true` |
+| `end-of-line-diagnostics` | Minimum severity of diagnostics to render at the end of the line. Set to `disable` to disable entirely. Refer to the setting about `inline-diagnostics` for more details | "disable"
+| `clipboard-provider` | Which API to use for clipboard interaction. One of `pasteboard` (MacOS), `wayland`, `x-clip`, `x-sel`, `win-32-yank`, `termux`, `tmux`, `windows`, `termcode`, `none`, or a custom command set. | Platform and environment specific. |
 
 ### `[editor.clipboard-provider]` Section
 
