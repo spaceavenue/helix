@@ -405,6 +405,8 @@ pub struct Config {
     pub breadcrumb: BreadcrumbConfig,
     /// Vertical indent width guides.
     pub indent_guides: IndentGuidesConfig,
+    /// The initial mode for newly opened editors. Defaults to `"normal"`.
+    pub initial_mode: Mode,
     /// Whether to color modes with different colors. Defaults to `false`.
     pub color_modes: bool,
     pub soft_wrap: SoftWrap,
@@ -1240,6 +1242,7 @@ impl Default for Config {
             bufferline: BufferLine::default(),
             breadcrumb: BreadcrumbConfig::default(),
             indent_guides: IndentGuidesConfig::default(),
+            initial_mode: Mode::Normal,
             color_modes: false,
             soft_wrap: SoftWrap {
                 enable: Some(false),
@@ -2071,6 +2074,7 @@ impl Editor {
 
     /// Generate an id for a new document and register it.
     fn new_document(&mut self, mut doc: Document) -> DocumentId {
+        doc.mode = self.config().initial_mode;
         let id = self.next_document_id;
         // Safety: adding 1 from 1 is fine, practically impossible to reach usize max
         self.next_document_id =
